@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎰 JACKPOT - Jeu Polynésien</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎰 JACKPOT</h1>
+            <p class="subtitle">Tente ta chance !</p>
+            <div class="timer" id="timer">⏰ Prochaine partie gratuite dans : --:--:--</div>
+        </header>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen active">
+            <div class="info-bar">
+                <div class="score">
+                    <span class="label">Ta boîte :</span>
+                    <span id="playerBox" class="value">-</span>
+                </div>
+                <div class="score">
+                    <span class="label">Boîtes ouvertes :</span>
+                    <span id="openedCount" class="value">0/19</span>
+                </div>
+            </div>
+
+            <!-- Grid of boxes -->
+            <div class="boxes-grid" id="boxesGrid"></div>
+
+            <!-- Banker offer -->
+            <div id="bankerOffer" class="banker-offer hidden">
+                <h2>📞 Offre du Banquier</h2>
+                <div class="offer-amount" id="offerAmount">50 000 XPF</div>
+                <p>Accepter cette offre et arrêter le jeu ?</p>
+                <div class="offer-buttons">
+                    <button class="btn btn-success" onclick="acceptOffer()">✅ Prendre</button>
+                    <button class="btn btn-danger" onclick="refuseOffer()">❌ Laisser</button>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="action-buttons" id="actionButtons">
+                <button class="btn btn-primary" onclick="startGame()">🎮 Commencer</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultScreen" class="screen">
+            <div class="result-card">
+                <h2 id="resultTitle">🎉 Félicitations !</h2>
+                <div class="result-prize" id="resultPrize">50 000 XPF</div>
+                <p id="resultMessage">Tu as remporté ce gain !</p>
+                <div class="result-buttons">
+                    <button class="btn btn-primary" onclick="playAgain()">🔄 Rejouer (Payer)</button>
+                    <button class="btn btn-secondary" onclick="waitForFree()">⏰ Attendre 24h</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trap Screen (Elimination) -->
+        <div id="trapScreen" class="screen">
+            <div class="result-card trap-card">
+                <h2>💣 BOOM !</h2>
+                <div class="trap-message">Tu as ouvert une boîte éliminatoire !</div>
+                <p>Tu peux sauver ta partie en payant</p>
+                <div class="result-buttons">
+                    <button class="btn btn-warning" onclick="buyRescue()">🛡️ Sauver ma partie (Payer)</button>
+                    <button class="btn btn-danger" onclick="endGame()">❌ Abandonner</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closePayment()">&times;</span>
+                <h2>💳 Paiement</h2>
+                <p class="payment-info">Montant : <strong id="paymentAmount">500 XPF</strong></p>
+                <p class="test-mode">⚠️ MODE TEST - Aucun paiement réel</p>
+                <div class="payment-buttons">
+                    <button class="btn btn-primary" onclick="simulatePayment()">💳 Payer par Carte</button>
+                    <button class="btn btn-secondary" onclick="simulatePayment()">📱 Payer par Mobile Money</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
